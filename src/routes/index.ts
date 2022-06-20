@@ -1,5 +1,5 @@
 import express from 'express';
-import { resizing } from './utilities';
+import { resizing,finalPathGenerator } from './utilities';
 import {resolve} from 'path';
 
 const routes = express.Router();
@@ -21,23 +21,26 @@ routes.get('/',(req, res) =>{
     const width:number = Number(req.query.width);
     const height:number = Number(req.query.height);
     const path = "/api/images" + `?filename=${filename}&width=${width}&height=${height}`
+    const cachedName:string = `${filename}-${width}-${height}.jpg`
 
-    console.log(path)
     //check if image exists in our server
 
     if(filename ===''){
         //return error
     }else{
+        //fn takes name,width, height,path, returns path(checks if file in cache or not)
 
-        //saving
-        resizing(inputFileName, width, height,path);
+        //inside the function
+        // resizing(inputFileName, width, height);
+
       //  console.log("should be an image");
         // res.sendStatus(200)
         //with file system read and send
     }
-    const x = resolve('images/fjord.jpg')
 
-    res.sendFile(x);
+    finalPathGenerator(cachedName,width,height,filename)
+    const finalPath = resolve('images/fjord.jpg')
+    res.sendFile(finalPath);
 
 
     
