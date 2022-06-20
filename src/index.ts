@@ -13,7 +13,11 @@ app.listen(port,()=>{
 
 export default app;
 // routes as the middleware
-// app.use('/myapiwithout query', routes);
+app.use('/api/images', routes);
+// //creating an end point
+// app.get('/api/images',(req, res) =>{
+//     res.send('hello Abzo ds ');
+// });
 
 
 
