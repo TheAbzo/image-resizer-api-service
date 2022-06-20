@@ -7,7 +7,8 @@
     "prettier": "prettier --config .prettierrc src/**/*.js --write",
     "build": "npx tsc",
     "jasmine":"jasmine",
-    "test":"npm run build && npm run jasmine"
+    "test":"npm run build && npm run jasmine",
+    "start": "nodemon src/index.ts"
   },
   "repository": {
     "type": "git",
