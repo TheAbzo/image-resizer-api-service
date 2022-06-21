@@ -10,14 +10,12 @@ app.listen(port,()=>{
     console.log(`server has started at localhost:${port}`);
 });
 
+app.get('/',(req, res) =>{
+    res.send('Service is on "/api/images". please provide filename="name"&width=00&height=00');
+});
 app.use('/api/images', routes);
 
 export default app;
-// routes as the middleware
-// //creating an end point
-// app.get('/api/images',(req, res) =>{
-//     res.send('hello Abzo ds ');
-// });
 
 
 

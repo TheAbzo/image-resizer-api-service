@@ -25,34 +25,27 @@ routes.get('/',async (req, res) =>{
     const cachedName:string = `${filename}-${width}-${height}.jpg`
 
     //check if image exists in our server
+    let images:string[] = ["encenadaport","fjord","icelandwaterfall","palmtunnel","santamonica"]
 
-    if(filename ===''){
-        //return error
+    if(images.indexOf(filename) > -1){
+        //in the array
+        const name = finalPathGenerator(cachedName,width,height,filename)
+        const ppp = `scaled/${name}`
+        const finalPath = resolve(ppp)
+    
+        console.log("second?") 
+    
+            if (fs.existsSync(finalPath)) {
+                // ...
+                res.status(200).sendFile(finalPath)
+                //   res.sendFile(finalPath)
+    
+              }
+        
     }else{
-        //fn takes name,width, height,path, returns path(checks if file in cache or not)
-
-        //inside the function
-        // resizing(inputFileName, width, height);
-
-      //  console.log("should be an image");
-        // res.sendStatus(200)
-        //with file system read and send
+      //not in it
+      res.send("Incorrect filename parameter value OR image name doesn't exist.  Please use one of these images:- encenadaport, fjord, icelandwaterfall, palmtunnel, santamonica.")
     }
-
-    
-    const name = finalPathGenerator(cachedName,width,height,filename)
-    const ppp = `scaled/${name}`
-    const finalPath = resolve(ppp)
-
-    console.log("second?") 
-
-        if (fs.existsSync(finalPath)) {
-            // ...
-              res.sendFile(finalPath)
-              
-          }
-    
-     
     }
     
 });

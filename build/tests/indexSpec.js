@@ -14,12 +14,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_1 = __importDefault(require("../index"));
 const supertest_1 = __importDefault(require("supertest"));
+// import { response } from 'express';
 const request = (0, supertest_1.default)(index_1.default);
 describe("suite for testing the image endpoint response", () => {
     //done for supertest to tell when our endpoint is done to disconnect from server
-    it('Server is up', (done) => __awaiter(void 0, void 0, void 0, function* () {
-        const response = yield request.get('/api/images');
-        expect(response.status).toBe(200);
-        done();
+    it('Server is up', () => __awaiter(void 0, void 0, void 0, function* () {
+        const respone = yield request.get('/api/images?filename=fjord&width=50&height=50');
+        expect(respone.status).toBe(200);
     }));
+    // done();
 });
