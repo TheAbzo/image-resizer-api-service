@@ -1,6 +1,7 @@
 import express from 'express';
 import { resizing,finalPathGenerator } from './utilities';
 import {resolve} from 'path';
+import fs from 'fs'
 
 const routes = express.Router();
 
@@ -9,7 +10,7 @@ const routes = express.Router();
 //     res.send('hello Abzo ds ');
 // });
 
-routes.get('/',(req, res) =>{
+routes.get('/',async (req, res) =>{
 
     if((req.query) === {}){
 
@@ -38,20 +39,23 @@ routes.get('/',(req, res) =>{
         //with file system read and send
     }
 
-    finalPathGenerator(cachedName,width,height,filename)
-    const finalPath = resolve('images/fjord.jpg')
-    res.sendFile(finalPath);
-
-
     
-   // res.send('main api route');
+    const name = finalPathGenerator(cachedName,width,height,filename)
+    const ppp = `scaled/${name}`
+    const finalPath = resolve(ppp)
+
+    console.log("second?") 
+
+        if (fs.existsSync(finalPath)) {
+            // ...
+              res.sendFile(finalPath)
+              
+          }
+    
+     
     }
     
 });
-//check if path exists
-//return image
-//else respond with utility function result
-//save it locally
 
 
 export default routes;

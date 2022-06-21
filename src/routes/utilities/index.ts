@@ -1,19 +1,24 @@
 import sharp from 'sharp';
 import {resolve} from 'path';
 import fs from 'fs'
+import { Console } from 'console';
 
 
-export function resizing(imageName:string, width:number, height:number) :boolean{
-    const imageLocation:string = `${imageName}.jpg`
-    const inputFile:string = `images/${imageLocation}`
-    const scaledNamed:string = `scaled/${imageName}-${width}-${height}.jpg`
-    
-    sharp(inputFile)
-        .resize(width, height)
-        .toFile(scaledNamed).then(() => true)
-    
-    console.log("entered")
-    return false
+
+
+export const resizing = (imageName:string, width:number, height:number) => {
+
+        const imageLocation:string = `${imageName}.jpg`
+        const inputFile:string = `images/${imageLocation}`
+        const scaledNamed:string = `scaled/${imageName}-${width}-${height}.jpg`
+        let success = false
+
+        
+        sharp(inputFile)
+            .resize(width, height)
+            .toFile(scaledNamed).then(()=>{
+                return success  
+              })
 }
 
 //fn takes name,width, height,path, returns path(checks if file in cache or not)
@@ -25,36 +30,24 @@ export function finalPathGenerator(fileNameFormatted:string, width:number, heigh
     //read cache
     let data = fs.readFileSync(cachedName);
     let cachedInJSON: JSON = JSON.parse(data.toString());
-    console.log(cachedInJSON)
-    console.log(fileNameFormatted)
     let tostringpls = `${fileNameFormatted}`
 
     //check if it is cached
     if (cachedInJSON.hasOwnProperty(fileNameFormatted)) {
-        console.log("has name")
+
+        console.log("Abzo: im cached")
         return fileNameFormatted
     } else {
+        console.log("Abzo: im not cached")
+        const x = resizing(fileName, width, height)
         console.log("doesnt have")
         let newData = {
             [fileNameFormatted]: []
         }  
         let newJson = {...cachedInJSON, ...newData}
-        resizing(fileName, width, height)
+        console.log("dsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+        console.log("ssssSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSssssssss",x)
         fs.writeFileSync(cachedName, JSON.stringify(newJson));
-
         return fileNameFormatted
-
-
-
     }
-   
-
-     
-
-    //inside the function
-        // resizing(inputFileName, width, height);
-
-      //  console.log("should be an image");
-        // res.sendStatus(200)
-        //with file system read and send
 }
