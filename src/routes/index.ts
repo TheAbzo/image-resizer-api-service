@@ -33,7 +33,7 @@ routes.get('/',async (req, res) =>{
         const ppp = `scaled/${name}`
         const finalPath = resolve(ppp)
     
-        console.log("second?") 
+        console.log(finalPath) 
     
             if (fs.existsSync(finalPath)) {
                 // ...

@@ -40,7 +40,7 @@ routes.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             const name = (0, utilities_1.finalPathGenerator)(cachedName, width, height, filename);
             const ppp = `scaled/${name}`;
             const finalPath = (0, path_1.resolve)(ppp);
-            console.log("second?");
+            console.log(finalPath);
             if (fs_1.default.existsSync(finalPath)) {
                 // ...
                 res.status(200).sendFile(finalPath);

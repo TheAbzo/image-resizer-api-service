@@ -1,4 +1,4 @@
-import sharp from 'sharp';
+import sharp, { bool } from 'sharp';
 import {resolve} from 'path';
 import fs from 'fs'
 import { Console } from 'console';
@@ -6,19 +6,20 @@ import { Console } from 'console';
 
 
 
-export const resizing = (imageName:string, width:number, height:number) => {
+export const resizing = (imageName:string, width:number, height:number): boolean => {
 
         const imageLocation:string = `${imageName}.jpg`
         const inputFile:string = `images/${imageLocation}`
         const scaledNamed:string = `scaled/${imageName}-${width}-${height}.jpg`
-        let success = false
+        let success = true
 
         
         sharp(inputFile)
             .resize(width, height)
             .toFile(scaledNamed).then(()=>{
-                return success  
+                return true
               })
+        return success
 }
 
 //fn takes name,width, height,path, returns path(checks if file in cache or not)

@@ -10,12 +10,13 @@ const resizing = (imageName, width, height) => {
     const imageLocation = `${imageName}.jpg`;
     const inputFile = `images/${imageLocation}`;
     const scaledNamed = `scaled/${imageName}-${width}-${height}.jpg`;
-    let success = false;
+    let success = true;
     (0, sharp_1.default)(inputFile)
         .resize(width, height)
         .toFile(scaledNamed).then(() => {
-        return success;
+        return true;
     });
+    return success;
 };
 exports.resizing = resizing;
 //fn takes name,width, height,path, returns path(checks if file in cache or not)
