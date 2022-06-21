@@ -1,21 +1,16 @@
 import express from 'express';
-import { resizing,finalPathGenerator } from './utilities';
+import {finalPathGenerator } from './utilities';
 import {resolve} from 'path';
 import fs from 'fs'
 
 const routes = express.Router();
 
-// //creating an end point
-// app.get('/abzo',(req, res) =>{
-//     res.send('hello Abzo ds ');
-// });
 
 routes.get('/',async (req, res) =>{
 
-    if((req.query) === {}){
+    if((req.url.includes('?')) && Number(req.query.width) >= 0  && Number(req.query.height) ){
 
-        res.send("please enter a valid url parameters")
-    }else{
+       
         //get query parameters
     const filename:string = (req.query.filename) as string;
     const inputFileName:string = `${filename}`;
@@ -46,6 +41,9 @@ routes.get('/',async (req, res) =>{
       //not in it
       res.send("Incorrect filename parameter value OR image name doesn't exist.  Please use one of these images:- encenadaport, fjord, icelandwaterfall, palmtunnel, santamonica.")
     }
+        
+    }else{
+        res.send("please enter a valid url parameters")
     }
     
 });

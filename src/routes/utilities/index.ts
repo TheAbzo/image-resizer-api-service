@@ -1,7 +1,5 @@
 import sharp, { bool } from 'sharp';
-import {resolve} from 'path';
 import fs from 'fs'
-import { Console } from 'console';
 
 
 
@@ -31,23 +29,18 @@ export function finalPathGenerator(fileNameFormatted:string, width:number, heigh
     //read cache
     let data = fs.readFileSync(cachedName);
     let cachedInJSON: JSON = JSON.parse(data.toString());
-    let tostringpls = `${fileNameFormatted}`
 
     //check if it is cached
     if (cachedInJSON.hasOwnProperty(fileNameFormatted)) {
 
-        console.log("Abzo: im cached")
         return fileNameFormatted
     } else {
         console.log("Abzo: im not cached")
         const x = resizing(fileName, width, height)
-        console.log("doesnt have")
         let newData = {
             [fileNameFormatted]: []
         }  
         let newJson = {...cachedInJSON, ...newData}
-        console.log("dsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-        console.log("ssssSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSssssssss",x)
         fs.writeFileSync(cachedName, JSON.stringify(newJson));
         return fileNameFormatted
     }
