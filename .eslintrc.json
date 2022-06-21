@@ -17,7 +17,9 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "no-console": "Off",
-        "no-var": "error"
+        "no-console": "error",
+        "no-var": "error",
+        "prefer-const": "off",
+        "@typescript-eslint/no-inferrable-types": "off"
     }
 }

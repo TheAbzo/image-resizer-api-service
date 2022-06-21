@@ -10,8 +10,7 @@ describe("suite for testing the resizing function", () => {
     });
 
     it("Testing on image output resized file", () => {
-        const data = resizing("fjord",50,50);
-        let result = fs.existsSync(resolve("scaled/fjord-50-50.jpg"))
+        const result = fs.existsSync(resolve("scaled/fjord-50-50.jpg"))
         
         expect(result).toBe(true);
     });
