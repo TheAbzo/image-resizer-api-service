@@ -30,7 +30,7 @@ npm install
 - example:
    - http://localhost:3000/api/images?filename=santamonica&width=300&height=400
 
-### other scripts
+### Other scripts
 - npm run build (to compile ts code)
 - npm run test (to run jasmine test suits)
 - npm run lint
