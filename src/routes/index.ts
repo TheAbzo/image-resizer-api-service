@@ -4,7 +4,7 @@ import express from 'express';
 
 const routes = express.Router();
 
-routes.get('/', async (req, res) => {
+routes.get('/', async (req, res): Promise<void> => {
     //checks for valid query, and valid width, height(above 0)
     if (req.url.includes('?') && Number(req.query.width) >= 0 && Number(req.query.height)) {
         //get query parameters
