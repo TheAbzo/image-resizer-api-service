@@ -83,7 +83,7 @@ function finalPathGenerator(fileNameFormatted, width, height, fileName) {
         resizing(fileName, width, height);
         //data to be added to cache file
         const newData = {
-            [fileNameFormatted]: [],
+            [fileNameFormatted]: []
         };
         //merge new data with older cache
         const newJson = Object.assign(Object.assign({}, cachedInJSON), newData);

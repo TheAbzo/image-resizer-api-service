@@ -20,6 +20,7 @@
         "no-console": "error",
         "no-var": "error",
         "prefer-const": "off",
+        "semi": "error",
         "@typescript-eslint/no-inferrable-types": "off"
     }
 }

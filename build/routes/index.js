@@ -18,9 +18,7 @@ const express_1 = __importDefault(require("express"));
 const routes = express_1.default.Router();
 routes.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     //checks for valid query, and valid width, height(above 0)
-    if (req.url.includes('?') &&
-        Number(req.query.width) >= 0 &&
-        Number(req.query.height)) {
+    if (req.url.includes('?') && Number(req.query.width) >= 0 && Number(req.query.height)) {
         //get query parameters
         const filename = req.query.filename;
         const width = Number(req.query.width);
@@ -31,7 +29,7 @@ routes.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             'fjord',
             'icelandwaterfall',
             'palmtunnel',
-            'santamonica',
+            'santamonica'
         ];
         //check if image exists in our server
         if (images.indexOf(filename) > -1) {

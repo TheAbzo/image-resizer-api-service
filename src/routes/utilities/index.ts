@@ -31,17 +31,11 @@ export async function waitForFileExists(
  * @param height
  * @returns
  */
-export function resizing(
-    imageName: string,
-    width: number,
-    height: number
-): boolean {
+export function resizing(imageName: string, width: number, height: number): boolean {
     const imageLocation: string = `${imageName}.jpg`;
     const inputFile: string = resolve(`images/${imageLocation}`);
     const inputImage = inputFile.replace('build\\', '');
-    const scaledNamed: string = resolve(
-        `scaled/${imageName}-${width}-${height}.jpg`
-    );
+    const scaledNamed: string = resolve(`scaled/${imageName}-${width}-${height}.jpg`);
     const scaledNamedWithoutBuild = scaledNamed.replace('build\\', '');
     let success: boolean = true;
 
@@ -86,7 +80,7 @@ export function finalPathGenerator(
 
         //data to be added to cache file
         const newData = {
-            [fileNameFormatted]: [],
+            [fileNameFormatted]: []
         };
 
         //merge new data with older cache

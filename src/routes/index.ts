@@ -6,11 +6,7 @@ const routes = express.Router();
 
 routes.get('/', async (req, res) => {
     //checks for valid query, and valid width, height(above 0)
-    if (
-        req.url.includes('?') &&
-        Number(req.query.width) >= 0 &&
-        Number(req.query.height)
-    ) {
+    if (req.url.includes('?') && Number(req.query.width) >= 0 && Number(req.query.height)) {
         //get query parameters
         const filename: string = req.query.filename as string;
         const width: number = Number(req.query.width);
@@ -21,17 +17,12 @@ routes.get('/', async (req, res) => {
             'fjord',
             'icelandwaterfall',
             'palmtunnel',
-            'santamonica',
+            'santamonica'
         ];
 
         //check if image exists in our server
         if (images.indexOf(filename) > -1) {
-            const name = finalPathGenerator(
-                cachedName,
-                width,
-                height,
-                filename
-            );
+            const name = finalPathGenerator(cachedName, width, height, filename);
             const scaledImage = `scaled/${name}`;
             const finalPath = resolve(scaledImage);
             let finalPathSlashed = finalPath.replace(/\\/g, '/');
