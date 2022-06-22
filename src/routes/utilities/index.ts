@@ -3,26 +3,37 @@ import fs from 'fs';
 import {resolve} from 'path';
 
 /**
+ * function that awaits till image file is processed
+ * @param filePath 
+ * @param currentTime 
+ * @param timeout 
+ * @returns 
+ */
+export async function waitForFileExists(filePath:string, currentTime:number = 0, timeout:number = 5000): Promise<boolean> {
+    if (fs.existsSync(filePath)) return true;
+    if (currentTime === timeout) return false;
+
+    //wait for 1 second
+    await new Promise((resolve, reject) => setTimeout(() => resolve(true), 1000));
+
+    //waited for 1 second
+    return waitForFileExists(filePath, currentTime + 1000, timeout);
+  }
+
+/**
  * @description resizing image takes images name with the width and height to be resized into
  * @param imageName 
  * @param width 
  * @param height 
  * @returns 
  */
-export const resizing = (imageName:string, width:number, height:number): boolean => {
+export function resizing(imageName:string, width:number, height:number): boolean {
 
         const imageLocation:string = `${imageName}.jpg`;
-        //get absolute path of input file
         const inputFile:string = resolve(`images/${imageLocation}`);
         const inputImage = inputFile.replace("build\\",'')
-        console.log("imaaaaaaaaaaaaaaage",inputImage)
-        console.log("input FIle is ----------",inputFile)
-
-
         const scaledNamed:string = resolve(`scaled/${imageName}-${width}-${height}.jpg`);
-        let scaledNamedWithoutBuild = scaledNamed.replace("build\\",'')
-        console.log('TIREDDDDDDDDDDDDDDDDDDDDDDDDDDD_----', scaledNamedWithoutBuild)
-        console.log("Saving in", scaledNamed)
+        const scaledNamedWithoutBuild = scaledNamed.replace("build\\",'')
         let success:boolean = true;
         
         sharp(inputImage.replace(/\\/g, "/"))
@@ -44,36 +55,18 @@ export const resizing = (imageName:string, width:number, height:number): boolean
  */
 export function finalPathGenerator(fileNameFormatted:string, width:number, height:number, fileName:string):string {
 
-    //get absolute path of cache.json
-    //D:\Projects - Abzo\image-resizer-api\cache.json
-    //src/routes/utilities/
-    // const cachedName:string = resolve('cache.json'); 
-    //crashes on file: D:\\Projects - Abzo\\image-resizer-api\\build\\cache.json
-    //convert \ to /  (make sure its \ not \\)
-    // const cachedName:string = resolve('D:/Projects - Abzo/image-resizer-api/cache.json'); 
-    // const test = cachedName.replace(/\\/g, "/");
-    //
-    //our file: D:/Projects - Abzo/image-resizer-api/cache.json
     const cachedName:string = resolve("cache.json"); 
-    const test = cachedName.replace(/\\/g, "/");
-    const test2 = test.replace("build/",'')
-    console.log("tesssst",test2)
-    console.log("cacheName is", cachedName)
+    const cachedNameSlashed = cachedName.replace(/\\/g, "/");
+    const cachedNameAdjusted = cachedNameSlashed.replace("build/",'');
 
     //read cache
-    const data:Buffer = fs.readFileSync(test2);
+    const data:Buffer = fs.readFileSync(cachedNameAdjusted);
     const cachedInJSON:JSON = JSON.parse(data.toString());
-    console.log("json is",cachedInJSON );
 
     //check if it is cached
-    console.log("i'm here start");
-
     if (Object.prototype.hasOwnProperty.call(cachedInJSON,fileNameFormatted)) {
-        console.log("i'm here 1")
         return fileNameFormatted;
     } else {
-
-        console.log("i'm here 2")
 
         //resizing image
         resizing(fileName, width, height);
