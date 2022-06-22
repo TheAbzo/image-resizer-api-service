@@ -21,13 +21,13 @@ routes.get('/',async (req, res) =>{
         const name = finalPathGenerator(cachedName,width,height,filename);
         const scaledImage = `scaled/${name}`;
         const finalPath = resolve(scaledImage);
-        let paaa = finalPath.replace(/\\/g, "/");
-        let x =paaa.replace("build/",'')
+        let finalPathSlashed = finalPath.replace(/\\/g, "/");
+        let finalPathFixed =finalPathSlashed.replace("build/",'')
         
-        waitForFileExists(x).then(()=>{
+        waitForFileExists(finalPathFixed).then(()=>{
 
             //send image with status code 200
-            res.status(200).sendFile(x);
+            res.status(200).sendFile(finalPathFixed);
         })
     }else{
 

@@ -14,7 +14,7 @@ export async function waitForFileExists(filePath:string, currentTime:number = 0,
     if (currentTime === timeout) return false;
 
     //wait for 1 second
-    await new Promise((resolve, reject) => setTimeout(() => resolve(true), 1000));
+    await new Promise((resolve) => setTimeout(() => resolve(true), 1000));
 
     //waited for 1 second
     return waitForFileExists(filePath, currentTime + 1000, timeout);
