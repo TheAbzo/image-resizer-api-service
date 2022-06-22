@@ -2,7 +2,7 @@ import { resizing } from '../routes/utilities/index';
 import { resolve } from 'path';
 import fs from 'fs';
 
-describe('suite for testing the resizing function', () => {
+describe('suite for testing the resizing function', (): void => {
     it('Testing on Image processing fjord of 50:50 dimensions', (): void => {
         const data = resizing('fjord', 50, 50);
         expect(data).toBe(true);
