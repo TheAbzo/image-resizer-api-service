@@ -31,8 +31,8 @@ npm install
    - http://localhost:3000/api/images?filename=santamonica&width=300&height=400
 
 # other scripts
--npm run build (to compile ts code)
--npm run test (to run jasmine test suits)
--npm run lint
--npm run prettier(to run prettier on js files)
+- npm run build (to compile ts code)
+- npm run test (to run jasmine test suits)
+- npm run lint
+- npm run prettier(to run prettier on js files)
     
