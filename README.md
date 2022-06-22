@@ -34,6 +34,6 @@ npm install
 - npm run build (to compile ts code)
 - npm run test (to run jasmine test suits)
 - npm run lint
-- npm run prettier(to run prettier on js files)
+- npm run format(to run prettier)
 - npm run start
     
