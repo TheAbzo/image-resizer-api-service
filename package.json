@@ -31,16 +31,16 @@
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
     "eslint": "^8.18.0",
+    "jasmine": "^4.2.1",
+    "jasmine-spec-reporter": "^7.0.0",
     "nodemon": "^2.0.16",
     "prettier": "^2.7.1",
+    "supertest": "^6.2.3",
     "ts-node": "^10.8.1",
     "typescript": "^4.7.4"
   },
   "dependencies": {
     "express": "^4.18.1",
-    "jasmine": "^4.2.1",
-    "jasmine-spec-reporter": "^7.0.0",
-    "sharp": "^0.30.6",
-    "supertest": "^6.2.3"
+    "sharp": "^0.30.6"
   }
 }
