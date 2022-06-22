@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prettier": "prettier --config .prettierrc build/**/*.js --write",
+    "format": "prettier --write src/**/*.{ts,tsx,js,jsx}",
     "build": "npx tsc",
     "jasmine": "jasmine",
-    "lint": "eslint ./src",
+    "lint": "eslint . --ext .ts",
     "test": "npm run build && npm run jasmine",
     "start": "nodemon src/index.ts"
   },

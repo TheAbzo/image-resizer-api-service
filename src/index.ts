@@ -1,5 +1,5 @@
-import  express from "express";
-import routes from './routes/index'
+import express from 'express';
+import routes from './routes/index';
 
 const app = express();
 const port = 3000;
@@ -11,6 +11,3 @@ app.listen(port);
 app.use('/api/images', routes);
 
 export default app;
-
-
-
