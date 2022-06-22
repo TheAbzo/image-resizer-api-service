@@ -79,7 +79,7 @@ export function finalPathGenerator(
         resizing(fileName, width, height);
 
         //data to be added to cache file
-        const newData: Object = {
+        const newData = {
             [fileNameFormatted]: []
         };
 
