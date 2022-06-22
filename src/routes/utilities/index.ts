@@ -34,9 +34,9 @@ export async function waitForFileExists(
 export function resizing(imageName: string, width: number, height: number): boolean {
     const imageLocation: string = `${imageName}.jpg`;
     const inputFile: string = resolve(`images/${imageLocation}`);
-    const inputImage = inputFile.replace('build\\', '');
+    const inputImage: string = inputFile.replace('build\\', '');
     const scaledNamed: string = resolve(`scaled/${imageName}-${width}-${height}.jpg`);
-    const scaledNamedWithoutBuild = scaledNamed.replace('build\\', '');
+    const scaledNamedWithoutBuild: string = scaledNamed.replace('build\\', '');
     let success: boolean = true;
 
     sharp(inputImage.replace(/\\/g, '/'))
@@ -64,8 +64,8 @@ export function finalPathGenerator(
     fileName: string
 ): string {
     const cachedName: string = resolve('cache.json');
-    const cachedNameSlashed = cachedName.replace(/\\/g, '/');
-    const cachedNameAdjusted = cachedNameSlashed.replace('build/', '');
+    const cachedNameSlashed: string = cachedName.replace(/\\/g, '/');
+    const cachedNameAdjusted: string = cachedNameSlashed.replace('build/', '');
 
     //read cache
     const data: Buffer = fs.readFileSync(cachedNameAdjusted);
@@ -79,12 +79,12 @@ export function finalPathGenerator(
         resizing(fileName, width, height);
 
         //data to be added to cache file
-        const newData = {
+        const newData: Object = {
             [fileNameFormatted]: []
         };
 
         //merge new data with older cache
-        const newJson = { ...cachedInJSON, ...newData };
+        const newJson: JSON = { ...cachedInJSON, ...newData };
 
         //saving and return
         fs.writeFileSync(cachedName, JSON.stringify(newJson));

@@ -22,11 +22,11 @@ routes.get('/', async (req, res): Promise<void> => {
 
         //check if image exists in our server
         if (images.indexOf(filename) > -1) {
-            const name = finalPathGenerator(cachedName, width, height, filename);
-            const scaledImage = `scaled/${name}`;
-            const finalPath = resolve(scaledImage);
-            let finalPathSlashed = finalPath.replace(/\\/g, '/');
-            let finalPathFixed = finalPathSlashed.replace('build/', '');
+            const name: string = finalPathGenerator(cachedName, width, height, filename);
+            const scaledImage: string = `scaled/${name}`;
+            const finalPath: string = resolve(scaledImage);
+            let finalPathSlashed: string = finalPath.replace(/\\/g, '/');
+            let finalPathFixed: string = finalPathSlashed.replace('build/', '');
 
             waitForFileExists(finalPathFixed).then(() => {
                 //send image with status code 200
